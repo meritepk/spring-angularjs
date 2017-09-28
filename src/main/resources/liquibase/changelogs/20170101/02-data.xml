@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet id="20170101-data" author="eng-name">
+
+    <insert tableName="users">
+      <column name="id" value="test" />
+      <column name="user_name" value="test" />
+      <column name="password" value="test123" />
+      <column name="roles" value="ROLE_USER" />
+      <column name="last_loggged_in" valueDate="2017-01-01T12:00:00" />
+    </insert>
+    <insert tableName="users">
+      <column name="id" value="admin" />
+      <column name="user_name" value="admin" />
+      <column name="password" value="admin123" />
+      <column name="roles" value="ROLE_USER,ROLE_ADMIN,ROLE_ACTUATOR" />
+      <column name="last_loggged_in" valueDate="2017-01-01T12:00:00" />
+    </insert>
+
+    <insert tableName="countries">
+      <column name="id" value="pk" />
+      <column name="code" value="PK" />
+      <column name="name" value="Pakistan" />
+    </insert>
+    <insert tableName="countries">
+      <column name="id" value="us" />
+      <column name="code" value="US" />
+      <column name="name" value="United States" />
+    </insert>
+
+    <insert tableName="languages">
+      <column name="id" value="urd" />
+      <column name="code" value="URD" />
+      <column name="name" value="Urdu" />
+    </insert>
+    <insert tableName="languages">
+      <column name="id" value="eng" />
+      <column name="code" value="ENG" />
+      <column name="name" value="English" />
+    </insert>
+
+    <insert tableName="customers">
+      <column name="id" value="01" />
+      <column name="first_name" value="First01" />
+      <column name="last_name" value="Last01" />
+      <column name="email" value="first01@last01" />
+      <column name="date_of_birth" valueDate="2017-01-01" />
+      <column name="country_id" value="pk" />
+      <column name="language_id" value="urd" />
+      <column name="user_id" value="test" />
+    </insert>
+    <insert tableName="customers">
+      <column name="id" value="02" />
+      <column name="first_name" value="First02" />
+      <column name="last_name" value="Last02" />
+      <column name="email" value="first02@last02" />
+      <column name="date_of_birth" valueDate="2017-01-01" />
+      <column name="country_id" value="us" />
+      <column name="language_id" value="eng" />
+      <column name="user_id" value="admin" />
+    </insert>
+
+  </changeSet>
+
+</databaseChangeLog>
