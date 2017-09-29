@@ -55,11 +55,18 @@ public class UserInfo {
     }
 
     public Date getLastLogggedIn() {
-        return lastLogggedIn;
+        if (lastLogggedIn == null) {
+            return null;
+        }
+        return new Date(lastLogggedIn.getTime());
     }
 
     public void setLastLogggedIn(Date lastLogggedIn) {
-        this.lastLogggedIn = lastLogggedIn;
+        if (lastLogggedIn == null) {
+            this.lastLogggedIn = null;
+        } else {
+            this.lastLogggedIn = new Date(lastLogggedIn.getTime());
+        }
     }
 
 }

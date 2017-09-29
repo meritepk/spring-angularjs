@@ -77,16 +77,18 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean(name = "error")
     public View defaultErrorView() {
-        return new View() {
-            @Override
-            public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
-                throws Exception {
-            }
+        return new ErrorView();
+    }
 
-            @Override
-            public String getContentType() {
-                return "text/html";
-            }
-        };
+    public static class ErrorView implements View {
+        @Override
+        public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        }
+
+        @Override
+        public String getContentType() {
+            return "text/html";
+        }
     }
 }

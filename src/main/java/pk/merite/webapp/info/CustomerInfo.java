@@ -62,11 +62,18 @@ public class CustomerInfo {
     }
 
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        if (dateOfBirth == null) {
+            return null;
+        }
+        return new Date(dateOfBirth.getTime());
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        if (dateOfBirth == null) {
+            this.dateOfBirth = null;
+        } else {
+            this.dateOfBirth = new Date(dateOfBirth.getTime());
+        }
     }
 
     public String getCountryId() {
