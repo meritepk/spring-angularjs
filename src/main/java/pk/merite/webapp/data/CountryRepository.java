@@ -6,4 +6,5 @@ import pk.merite.webapp.info.CountryInfo;
 
 public interface CountryRepository extends JpaRepository<CountryInfo, String> {
 
+    CountryInfo findByCode(String code);
 }

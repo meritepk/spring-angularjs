@@ -19,4 +19,13 @@ public class CountryService {
     public List<CountryInfo> read() {
         return repository.findAll();
     }
+
+    public boolean create(CountryInfo country) {
+        CountryInfo existing = repository.findByCode(country.getCode());
+        if (existing == null) {
+            repository.save(country);
+            return true;
+        }
+        return false;
+    }
 }

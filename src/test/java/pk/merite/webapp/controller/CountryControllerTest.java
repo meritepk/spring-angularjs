@@ -28,6 +28,16 @@ public class CountryControllerTest {
             .with(SecurityMockMvcRequestPostProcessors.user("test").password("test123")))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.content().contentType(WebAppControllerTest.JSON))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.data", Matchers.hasSize(2)));
+            .andExpect(MockMvcResultMatchers.jsonPath("$.data", Matchers.hasSize(Matchers.greaterThan(1))));
+    }
+
+    @Test
+    public void testCreate() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/webservices/countries")
+            .with(SecurityMockMvcRequestPostProcessors.user("admin").password("admin123").roles("ADMIN"))
+            .with(SecurityMockMvcRequestPostProcessors.csrf())
+            .contentType(WebAppControllerTest.JSON)
+            .content("{\"id\":\"03\",\"code\":\"CN\",\"name\":\"China\"}"))
+            .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 }
