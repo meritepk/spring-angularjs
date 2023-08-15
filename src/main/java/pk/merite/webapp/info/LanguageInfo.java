@@ -1,8 +1,8 @@
 package pk.merite.webapp.info;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "languages")
@@ -36,5 +36,4 @@ public class LanguageInfo {
     public void setName(String name) {
         this.name = name;
     }
-
 }

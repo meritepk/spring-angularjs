@@ -1,0 +1,6 @@
+<FindBugsFilter>
+    <Match>
+        <Class name="pk.merite.webapp.controller.CustomerController" />
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
+</FindBugsFilter>

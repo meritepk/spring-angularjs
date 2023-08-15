@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  application:
+    name: webapp
+  datasource:
+    url: ${webapp.db.url}
+    username: ${webapp.db.user}
+    password: ${webapp.db.password}
+
+logging:
+  level:
+    sql: debug
+
+#server.port: 8080
+#server.contextPath: /webapp
+#server.session.cookie.domain: localhost
+#server.session.cookie.name: WEBAPPID
+
+#server.port: 8443
+#server.ssl.key-store: classpath:ssl/webapp.jks
+#server.ssl.key-store-password: changeit
+#server.ssl.key-password: another-changeit
+
+#spring.h2.console.enabled=true

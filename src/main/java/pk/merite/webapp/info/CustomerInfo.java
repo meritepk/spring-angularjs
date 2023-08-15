@@ -1,12 +1,10 @@
 package pk.merite.webapp.info;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "customers")
@@ -18,10 +16,7 @@ public class CustomerInfo {
     private String email;
     private String firstName;
     private String lastName;
-
-    @Temporal(value = TemporalType.DATE)
-    private Date dateOfBirth;
-
+    private LocalDate dateOfBirth;
     private String countryId;
     private String languageId;
     private String userId;
@@ -58,19 +53,12 @@ public class CustomerInfo {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        if (dateOfBirth == null) {
-            return null;
-        }
-        return new Date(dateOfBirth.getTime());
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        if (dateOfBirth == null) {
-            this.dateOfBirth = null;
-        } else {
-            this.dateOfBirth = new Date(dateOfBirth.getTime());
-        }
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getCountryId() {
@@ -96,5 +84,4 @@ public class CustomerInfo {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
 }

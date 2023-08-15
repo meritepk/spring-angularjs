@@ -30,7 +30,7 @@ public class CustomerService {
     }
 
     public boolean update(CustomerInfo customer) {
-        CustomerInfo existing = repository.findOne(customer.getId());
+        CustomerInfo existing = repository.findById(customer.getId()).orElse(null);
         if (existing != null) {
             repository.save(customer);
             return true;
@@ -39,23 +39,23 @@ public class CustomerService {
     }
 
     public boolean delete(String id) {
-        CustomerInfo existing = repository.findOne(id);
+        CustomerInfo existing = repository.findById(id).orElse(null);
         if (existing != null) {
-            repository.delete(id);
+            repository.deleteById(id);
             return true;
         }
         return false;
     }
 
-    public List<CustomerInfo> read() {
+    public List<CustomerInfo> retrieveAll() {
         return repository.findAll();
     }
 
-    public CustomerInfo read(String id) {
-        return repository.findOne(id);
+    public CustomerInfo retrieveById(String id) {
+        return repository.findById(id).orElse(null);
     }
 
-    public CustomerInfo readByEmail(String email) {
+    public CustomerInfo retrieveByEmail(String email) {
         return repository.findByEmail(email);
     }
 }

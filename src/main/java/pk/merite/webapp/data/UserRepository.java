@@ -7,5 +7,4 @@ import pk.merite.webapp.info.UserInfo;
 public interface UserRepository extends JpaRepository<UserInfo, String> {
 
     UserInfo findByUserName(String userName);
-
 }

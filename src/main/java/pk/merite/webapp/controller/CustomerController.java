@@ -18,7 +18,7 @@ import pk.merite.webapp.info.CustomerInfo;
 import pk.merite.webapp.service.CustomerService;
 
 @RestController
-@RequestMapping("/webservices/customers")
+@RequestMapping("/api/v1/customers")
 public class CustomerController {
 
     private CustomerService service;
@@ -27,14 +27,18 @@ public class CustomerController {
         this.service = service;
     }
 
+    private CustomerService getService() {
+        return service;
+    }
+
     @GetMapping
     public ResponseEntity<ApiResponseInfo<List<CustomerInfo>>> get() {
-        return ResponseEntity.ok(new ApiResponseInfo<List<CustomerInfo>>(null, service.read()));
+        return ResponseEntity.ok(new ApiResponseInfo<List<CustomerInfo>>(getService().retrieveAll()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerInfo> get(@PathVariable("id") String id) {
-        CustomerInfo customer = service.read(id);
+        CustomerInfo customer = service.retrieveById(id);
         if (customer == null) {
             return ResponseEntity.notFound().build();
         }
@@ -44,9 +48,9 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody CustomerInfo customer) {
         if (service.create(customer)) {
-            CustomerInfo created = service.readByEmail(customer.getEmail());
-            URI location =
-                ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(created.getId()).toUri();
+            CustomerInfo created = service.retrieveByEmail(customer.getEmail());
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                    .buildAndExpand(created.getId()).toUri();
             return ResponseEntity.created(location).build();
         }
         return ResponseEntity.badRequest().build();
@@ -68,5 +72,4 @@ public class CustomerController {
         }
         return ResponseEntity.notFound().build();
     }
-
 }

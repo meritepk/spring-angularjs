@@ -1,12 +1,10 @@
 package pk.merite.webapp.info;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -14,13 +12,10 @@ public class UserInfo {
 
     @Id
     private String id;
-
     private String userName;
     private String password;
     private String roles;
-
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date lastLogggedIn;
+    private LocalDateTime lastLogggedIn;
 
     public String getId() {
         return id;
@@ -54,19 +49,11 @@ public class UserInfo {
         this.roles = roles;
     }
 
-    public Date getLastLogggedIn() {
-        if (lastLogggedIn == null) {
-            return null;
-        }
-        return new Date(lastLogggedIn.getTime());
+    public LocalDateTime getLastLogggedIn() {
+        return lastLogggedIn;
     }
 
-    public void setLastLogggedIn(Date lastLogggedIn) {
-        if (lastLogggedIn == null) {
-            this.lastLogggedIn = null;
-        } else {
-            this.lastLogggedIn = new Date(lastLogggedIn.getTime());
-        }
+    public void setLastLogggedIn(LocalDateTime lastLogggedIn) {
+        this.lastLogggedIn = lastLogggedIn;
     }
-
 }

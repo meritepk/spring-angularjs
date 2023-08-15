@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class WebAppController {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @GetMapping({ "/", "/login" })
     public String index() {
         return "redirect:/web/index.html";
     }
 
-    @PostMapping("/webservices/login/success")
+    @PostMapping("/api/v1/login/success")
     @ResponseBody
     public void loginSuccess(Principal user) {
-        logger.debug("User {} logged in successfully", user.getName().replaceAll("\r\n", ""));
+        logger.info("User {} logged in successfully", user.getName().replaceAll("\r\n", ""));
     }
-
 }

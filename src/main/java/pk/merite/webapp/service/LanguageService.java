@@ -16,7 +16,7 @@ public class LanguageService {
         this.repository = repository;
     }
 
-    public List<LanguageInfo> read() {
+    public List<LanguageInfo> retrieveAll() {
         return repository.findAll();
     }
 }

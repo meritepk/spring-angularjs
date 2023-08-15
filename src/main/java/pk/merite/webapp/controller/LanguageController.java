@@ -12,7 +12,7 @@ import pk.merite.webapp.info.LanguageInfo;
 import pk.merite.webapp.service.LanguageService;
 
 @RestController
-@RequestMapping("/webservices/languages")
+@RequestMapping("/api/v1/languages")
 public class LanguageController {
 
     private LanguageService service;
@@ -23,7 +23,6 @@ public class LanguageController {
 
     @GetMapping
     public ResponseEntity<ApiResponseInfo<List<LanguageInfo>>> get() {
-        return ResponseEntity.ok(new ApiResponseInfo<List<LanguageInfo>>(null, service.read()));
+        return ResponseEntity.ok(new ApiResponseInfo<List<LanguageInfo>>(service.retrieveAll()));
     }
-
 }
